@@ -1,13 +1,14 @@
-{ pkgs,  ... }:
+{ pkgs, ... }:
 
 {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages =
-    [
-      pkgs.vim
-      pkgs.direnv
-    ];
+  environment.systemPackages = with pkgs; [
+    vim
+    direnv
+    fd
+    tmux
+  ];
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
@@ -15,6 +16,9 @@
 
   # Necessary for using flakes on this system.
   nix.settings.experimental-features = "nix-command flakes";
+
+  nix.settings.allowed-users = [ "root" "valrus" ];
+  nix.settings.trusted-users = [ "root" "valrus" ];
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true;  # default shell on catalina
@@ -28,7 +32,7 @@
   system.stateVersion = 4;
 
   # The platform the configuration will be used on.
-  nixpkgs.hostPlatform = "x86_64-darwin";
+  nixpkgs.hostPlatform = "aarch64-darwin";
 
   homebrew = {
     enable = true;
@@ -38,7 +42,8 @@
     };
   };
 
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-  home-manager.users.valrus = import ./home.nix;
+  users.users.valrus = {
+    name = "valrus";
+    home = "/Users/valrus";
+  };
 }
