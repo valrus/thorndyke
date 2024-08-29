@@ -13,26 +13,10 @@ let
   };
 in
   {
-    imports = [
-      ./shell.nix
+    home.packages = with pkgs; [
+      emacs-all-the-icons-fonts
+      starship
     ];
-
-    home = {
-      stateVersion = "23.11";
-      username = "valrus";
-      homeDirectory = "/Users/valrus";
-      packages = with pkgs; [
-        emacs-all-the-icons-fonts
-      ];
-      preferXdgDirectories = true;
-      sessionVariables = {
-        XDG_CONFIG_HOME = "$HOME/.config";
-        MPD_HOST = "$HOME/.mpd/mpd.socket";
-        MUSIC = "/Volumes/Multimedia/iTunes Media/";
-        EMACS = "$(which emacs)";
-        SITE = "$HOME/Sites";
-      };
-    };
 
     programs.emacs = {
       enable = true;
@@ -43,6 +27,4 @@ in
         treesit-grammars.with-all-grammars
       ]);
     };
-
-    programs.home-manager.enable = true;
   }

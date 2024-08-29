@@ -7,7 +7,6 @@
       defaultKeymap = "viins";
       autosuggestion = {
         enable = true;
-        strategy = [ "history" ];
       };
       enableCompletion = false;
       syntaxHighlighting = {
@@ -20,11 +19,6 @@
       '';
 
       plugins = [ ];
-    };
-
-    starship = {
-      enable = true;
-      enableZshIntegration = true;
     };
   };
 }

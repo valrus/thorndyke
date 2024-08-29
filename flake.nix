@@ -2,14 +2,14 @@
   description = "Darwin configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-24.05-darwin";
     nix-darwin.url = "github:LnL7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs-darwin";
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs-darwin";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, nix-darwin }:
+  outputs = inputs@{ self, nixpkgs, home-manager, nix-darwin, ... }:
   {
     defaultPackage.aarch64-darwin = home-manager.defaultPackage.aarch64-darwin;
 
@@ -29,7 +29,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.valrus = import ./home.nix;
+              users.valrus = import ./home;
             };
           }
         ];
@@ -42,7 +42,7 @@
     homeConfigurations = {
       "valrus" = home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs { system = "aarch64-darwin"; };
-        modules = [ ./home.nix ];
+        modules = [ ./home ];
       };
     };
   };

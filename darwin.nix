@@ -7,6 +7,7 @@
     vim
     direnv
     fd
+    starship
     tmux
   ];
 
@@ -21,7 +22,9 @@
   nix.settings.trusted-users = [ "root" "valrus" ];
 
   # Create /etc/zshrc that loads the nix-darwin environment.
-  programs.zsh.enable = true;  # default shell on catalina
+  programs.direnv.enable = true;
+  programs.direnv.nix-direnv.enable = true;
+
   # programs.fish.enable = true;
 
   # Set Git commit hash for darwin-version.
