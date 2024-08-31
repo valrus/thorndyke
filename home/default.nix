@@ -5,6 +5,8 @@
     ./shell.nix
     ./core.nix
     ./starship.nix
+    ./direnv.nix
+    ./tmux.nix
   ];
 
   home = {

@@ -11,6 +11,10 @@
     tmux
   ];
 
+  # You might think this isn't required if it's in the home module, but actually
+  # it very much is required in order to have any Nix anything in PATH.
+  programs.zsh.enable = true;
+
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;
@@ -20,12 +24,6 @@
 
   nix.settings.allowed-users = [ "root" "valrus" ];
   nix.settings.trusted-users = [ "root" "valrus" ];
-
-  # Create /etc/zshrc that loads the nix-darwin environment.
-  programs.direnv.enable = true;
-  programs.direnv.nix-direnv.enable = true;
-
-  # programs.fish.enable = true;
 
   # Set Git commit hash for darwin-version.
   # system.configurationRevision = self.rev or self.dirtyRev or null;
