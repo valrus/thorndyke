@@ -5,10 +5,13 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     vim
+    pipx
     direnv
     fd
     starship
     tmux
+    nodePackages.node2nix
+    yt-dlp
   ];
 
   # You might think this isn't required if it's in the home module, but actually
