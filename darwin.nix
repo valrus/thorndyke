@@ -16,6 +16,7 @@
   # You might think this isn't required if it's in the home module, but actually
   # it very much is required in order to have any Nix anything in PATH.
   programs.zsh.enable = true;
+  programs.fish.enable = true;
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;

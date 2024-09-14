@@ -23,5 +23,9 @@
 
       plugins = [ ];
     };
+
+    fish = {
+      enable = true;
+    };
   };
 }
