@@ -2,11 +2,13 @@
   description = "Darwin configuration";
 
   inputs = {
-    nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-24.05-darwin";
-    nix-darwin.url = "github:LnL7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs-darwin";
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs-darwin";
+    nixpkgs.url = "github:NixOS/nixpkgs";
+
+    nix-darwin.url = "github:LnL7/nix-darwin/master";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, nix-darwin, ... }:
@@ -25,7 +27,7 @@
 
         modules = [
           ./darwin.nix
-          home-manager.darwinModules.home-manager {
+          inputs.home-manager.darwinModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
@@ -37,13 +39,13 @@
     };
 
     # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations.Mac.pkgs;
+    # darwinPackages = self.darwinConfigurations.Mac.pkgs;
 
-    homeConfigurations = {
-      "valrus" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs { system = "aarch64-darwin"; };
-        modules = [ ./home ];
-      };
-    };
+    # homeConfigurations = {
+    #   "valrus" = home-manager.lib.homeManagerConfiguration {
+    #     pkgs = import nixpkgs { system = "aarch64-darwin"; };
+    #     modules = [ ./home ];
+    #   };
+    # };
   };
 }
