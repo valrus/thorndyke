@@ -4,13 +4,12 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    vim
-    pipx
     direnv
     fd
-    starship
-    tmux
     nodePackages.node2nix
+    pipx
+    tmux
+    vim
     yt-dlp
   ];
 
