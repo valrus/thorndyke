@@ -44,6 +44,28 @@
       autoUpdate = true;
       upgrade = true;
     };
+    taps = [
+      "mopidy/mopidy"
+      "qmk/qmk"
+    ];
+    brews = [
+      "python-setuptools"
+      "mopidy"
+      "mopidy-mpd"
+      {
+        name = "mpd";
+        restart_service = true;
+      }
+      "qmk"
+    ];
+    casks = [
+      "alfred"
+      "deltachat"
+      "discord"
+      "hammerspoon"
+      "iina"
+      "plugdata"
+    ];
   };
 
   users.users.valrus = {
