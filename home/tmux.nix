@@ -3,7 +3,7 @@
 {
   programs.tmux = {
     enable = true;
-    shell = "${pkgs.zsh}/bin/zsh";
+    shell = "${pkgs.fish}/bin/fish";
     historyLimit = 100000;
     escapeTime = 0;
     keyMode = "vi";
