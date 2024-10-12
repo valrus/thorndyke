@@ -26,6 +26,14 @@
 
     fish = {
       enable = true;
+      interactiveShellInit = ''
+        set fish_greeting # Disable greeting
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+        set -x RUBY_CONFIGURE_OPTS "--with-openssl-dir=$(brew --prefix openssl@1.1)"
+
+        # needed for pipx
+        set PATH $PATH $HOME/.local/bin
+      '';
     };
   };
 }
