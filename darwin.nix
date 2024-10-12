@@ -6,8 +6,10 @@
   environment.systemPackages = with pkgs; [
     direnv
     fd
+    mpd-discord-rpc
     nodePackages.node2nix
     pipx
+    tldr
     tmux
     vim
     yt-dlp
@@ -54,6 +56,10 @@
       "mopidy-mpd"
       {
         name = "mpd";
+        restart_service = true;
+      }
+      {
+        name = "mpdscribble";
         restart_service = true;
       }
       "qmk"
