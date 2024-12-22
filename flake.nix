@@ -37,15 +37,5 @@
         ];
       };
     };
-
-    # Expose the package set, including overlays, for convenience.
-    # darwinPackages = self.darwinConfigurations.Mac.pkgs;
-
-    # homeConfigurations = {
-    #   "valrus" = home-manager.lib.homeManagerConfiguration {
-    #     pkgs = import nixpkgs { system = "aarch64-darwin"; };
-    #     modules = [ ./home ];
-    #   };
-    # };
   };
 }

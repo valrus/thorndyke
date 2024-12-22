@@ -6,6 +6,8 @@
   environment.systemPackages = with pkgs; [
     direnv
     fd
+    mpd
+    listenbrainz-mpd
     mpd-discord-rpc
     nodePackages.node2nix
     pipx
@@ -14,6 +16,49 @@
     vim
     yt-dlp
   ];
+
+  # LaunchAgents
+  launchd = {
+    user = {
+      agents = {
+        mpd-discord-rpc = {
+          command = "${pkgs.mpd-discord-rpc}/bin/mpd-discord-rpc";
+          serviceConfig = {
+            KeepAlive = true;
+            RunAtLoad = true;
+            StandardOutPath = "/tmp/mpd-discord-rpc.out";
+            StandardErrorPath = "/tmp/mpd-discord-rpc.err";
+          };
+        };
+
+        mpd = {
+          command = "${pkgs.mpd}/bin/mpd --no-daemon";
+          serviceConfig = {
+            KeepAlive = true;
+            RunAtLoad = true;
+            ProcessType = "Interactive";
+            LimitLoadToSessionType = [
+              "Aqua"
+              "Background"
+              "LoginWindow"
+              "StandardIO"
+              "System"
+            ];
+          };
+        };
+
+        listenbrainz-mpd = {
+          command = "${pkgs.listenbrainz-mpd}/bin/listenbrainz-mpd";
+          serviceConfig = {
+            KeepAlive = true;
+            RunAtLoad = true;
+            StandardOutPath = "/tmp/listenbrainz-mpd.out";
+            StandardErrorPath = "/tmp/listenbrainz-mpd.err";
+          };
+        };
+      };
+    };
+  };
 
   # You might think this isn't required if it's in the home module, but actually
   # it very much is required in order to have any Nix anything in PATH.
@@ -47,21 +92,10 @@
       upgrade = true;
     };
     taps = [
-      "mopidy/mopidy"
       "qmk/qmk"
     ];
     brews = [
       "python-setuptools"
-      "mopidy"
-      "mopidy-mpd"
-      {
-        name = "mpd";
-        restart_service = true;
-      }
-      {
-        name = "mpdscribble";
-        restart_service = true;
-      }
       "qmk"
     ];
     casks = [
@@ -71,6 +105,7 @@
       "hammerspoon"
       "iina"
       "plugdata"
+      "calibre"
     ];
   };
 
