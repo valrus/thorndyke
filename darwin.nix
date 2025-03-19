@@ -100,12 +100,15 @@
     ];
     casks = [
       "alfred"
+      "calibre"
       "deltachat"
       "discord"
       "hammerspoon"
       "iina"
       "plugdata"
-      "calibre"
+      "signal"
+      "font-maple-mono"
+      "font-recursive-code"
     ];
   };
 
