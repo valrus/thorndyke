@@ -5,7 +5,7 @@ let
     url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
   });
   my-emacs = pkgs.emacs.override {
-    withNativeCompilation = true;
+    withNativeCompilation = false;
     withSQLite3 = true;
     withTreeSitter = true;
     withWebP = true;
