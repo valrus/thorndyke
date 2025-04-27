@@ -71,6 +71,9 @@
   nix.settings.allowed-users = [ "root" "valrus" ];
   nix.settings.trusted-users = [ "root" "valrus" ];
 
+  # Determinate needs this for its own stuff apparently
+  nix.enable = false;
+
   # Set Git commit hash for darwin-version.
   # system.configurationRevision = self.rev or self.dirtyRev or null;
 
