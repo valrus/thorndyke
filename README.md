@@ -21,5 +21,6 @@ nix run nix-darwin -- switch --flake ~/.config/nix
 ```
 
 ``` sh
-darwin-rebuild switch --flake ~/.config/nix
+# https://github.com/nix-darwin/nix-darwin/issues/1457
+sudo darwin-rebuild switch --flake ~/.config/nix
 ```
