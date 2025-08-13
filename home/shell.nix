@@ -13,7 +13,7 @@
         enable = true;
       };
 
-      initExtra = ''
+      initContent = ''
         eval "$(/opt/homebrew/bin/brew shellenv)"
         export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
