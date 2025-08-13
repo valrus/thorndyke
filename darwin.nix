@@ -72,6 +72,7 @@
 
   nix.settings.allowed-users = [ "root" "valrus" ];
   nix.settings.trusted-users = [ "root" "valrus" ];
+  system.primaryUser = "valrus";
 
   # Determinate needs this for its own stuff apparently
   nix.enable = false;
