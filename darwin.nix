@@ -14,6 +14,7 @@
     pipx
     tldr
     tmux
+    uv
     vim
     yt-dlp
   ];
