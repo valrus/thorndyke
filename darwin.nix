@@ -7,11 +7,14 @@
     coreutils-prefixed
     direnv
     fd
-    mpd
+    ffmpeg
     listenbrainz-mpd
+    mpd
     mpd-discord-rpc
     nodePackages.node2nix
+    ollama
     pipx
+    pyenv
     tldr
     tmux
     uv
@@ -105,6 +108,7 @@
       "calibre"
       "deltachat"
       "discord"
+      "gbevin/tools/showmidi"
       "hammerspoon"
       "iina"
       "plugdata"
