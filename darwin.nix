@@ -109,6 +109,7 @@
       "deltachat"
       "discord"
       "gbevin/tools/showmidi"
+      "ghostty"
       "hammerspoon"
       "iina"
       "plugdata"
