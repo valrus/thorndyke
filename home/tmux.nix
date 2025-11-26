@@ -10,16 +10,23 @@
     plugins = with pkgs; [
       tmuxPlugins.yank
       {
-        plugin = tmuxPlugins.power-theme;
+        plugin = tmuxPlugins.tmux-nova;
         extraConfig = ''
-          set -g @tmux_power_theme 'moon'
-          set -g @tmux_power_date_icon ' '
-          set -g @tmux_power_time_icon ' '
-          set -g @tmux_power_user_icon ' '
-          set -g @tmux_power_session_icon ' '
-          set -g @tmux_power_show_upload_speed false
-          set -g @tmux_power_show_download_speed false
-          set -g @tmux_power_show_web_reachable false
+          set -g @nova-nerdfonts true
+
+          set -g @nova-nerdfonts-left 
+          set -g @nova-nerdfonts-right 
+          set -g @nova-nerdfonts-first 
+          set -g @nova-nerdfonts-last 
+
+          set -g @nova-segment-mode "#{?client_prefix,Ω,ω}"
+          set -g @nova-segment-mode-colors "#50fa7b #282a36"
+
+          set -g @nova-pane "#I#{?pane_in_mode,  #{pane_mode},}  #W"
+
+          set -g @nova-rows 0
+          set -g @nova-segments-0-left "mode"
+          set -g @nova-segments-0-right ""
       '';
       }
     ];
