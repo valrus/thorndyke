@@ -1,6 +1,15 @@
 { pkgs, ... }:
 
 {
+  # The platform the configuration will be used on.
+  nixpkgs.hostPlatform = "aarch64-darwin";
+  nixpkgs.config = {
+    allowUnfree = true;
+    ollama = {
+      syncModels = true;
+    };
+  };
+
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
@@ -8,13 +17,16 @@
     direnv
     fd
     ffmpeg
+    hatch
     listenbrainz-mpd
     mpd
     mpd-discord-rpc
-    nodePackages.node2nix
+    # nodePackages.node2nix
+    nodejs_24
     ollama
-    pipx
+    orbstack
     pyenv
+    qmk
     tldr
     tmux
     uv
@@ -87,27 +99,27 @@
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
 
-  # The platform the configuration will be used on.
-  nixpkgs.hostPlatform = "aarch64-darwin";
-
   homebrew = {
     enable = true;
     onActivation = {
       autoUpdate = true;
       upgrade = true;
     };
-    taps = [
-      "qmk/qmk"
-    ];
+    # taps = [
+    #   {
+    #     name = "gbevin/tools/showmidi";
+    #     trusted = true;
+    #   }
+    # ];
     brews = [
       "python-setuptools"
-      "qmk"
     ];
     casks = [
       "alfred"
       "calibre"
       "deltachat"
       "discord"
+      "floorp"
       "gbevin/tools/showmidi"
       "ghostty"
       "hammerspoon"
